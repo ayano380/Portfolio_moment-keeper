@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TagInputComponent from "./tag-input"
 // import '../App.css';
 
 const PopUp = ({ togglePopUp, setPostData }) => {
@@ -81,20 +82,21 @@ const PopUp = ({ togglePopUp, setPostData }) => {
             <li>
               <div>
                 <h3>タグ</h3>
-                <label className="selectbox-3">
+                {/* <label className="selectbox-3">
                   <select value={tag} onChange={(e) => setTag(e.target.value)}>
                     <option>optionの例1</option>
                     <option>optionの例2</option>
                     <option>optionの例3</option>
                   </select>
-                </label>
+                </label> */}
+                <TagInputComponent />
               </div>
             </li>
           </ul>
         </div>
-        <button className="popup_postbutton" onClick={handleSubmit}>
+        <a className="popup_postbutton" onClick={handleSubmit}>
           投稿する
-        </button>
+        </a>
       </div>
     </>
   );

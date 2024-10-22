@@ -10,7 +10,7 @@ import PopUp from "../components/PopUp";
 const Top = () => {
   // PopUpの表示非表示
   const [isPopUpVisible, setPopUpVisible] = useState(false);
-  // 投稿する写真の状態管理
+  // 投稿するコンテンツの状態管理
   const [postData, setPostData] = useState([]);
 
   const togglePopUp = () => {

@@ -1,4 +1,5 @@
 import './App.css';
+import './css/PopUp.css';
 // Headerコンポーネントをimportする
 // import Header from './components/Header';
 import Top from './pages/Top';
