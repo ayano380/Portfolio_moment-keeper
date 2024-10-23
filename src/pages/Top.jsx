@@ -27,8 +27,8 @@ const Top = () => {
     <>
       <div className="container">
         <Header />
-        <Tab />
-        <Pictures postData={postData} />
+        <Tab postData={postData} setPostData={setPostData}/>
+        {/* <Pictures postData={postData} setPostData={setPostData} /> */}
         <Posts togglePopUp={togglePopUp} />
         {isPopUpVisible && (
           <>

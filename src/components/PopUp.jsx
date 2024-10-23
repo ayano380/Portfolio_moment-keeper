@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import TagInputComponent from "./tag-input"
-// import '../App.css';
+import Taginput from "./tag-input";
 
 const PopUp = ({ togglePopUp, setPostData }) => {
   const [tempImage, setTempImage] = useState(""); // 一時的に選択した画像を保持
   const [comment, setComment] = useState("");
   const [date, setDate] = useState("");
-  const [tag, setTag] = useState("");
+  const [tags, setTags] = useState([]); // タグの状態を管理
 
   const onFileInputChange = (e) => {
     if (!e.target.files) return;
-    // ファイルオブジェクトを取得
     const file = e.target.files[0];
     const reader = new FileReader();
 
@@ -29,13 +27,15 @@ const PopUp = ({ togglePopUp, setPostData }) => {
       image: tempImage,
       comment: comment,
       date: date,
-      tag: tag,
+      tags: tags, // タグを保存
     };
 
     // LocalStorageにデータを追加
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
     storedPosts.push(newPost);
     localStorage.setItem("posts", JSON.stringify(storedPosts));
+
+    console.log("投稿されました");
 
     setPostData(storedPosts); // 親コンポーネントの状態を更新
     togglePopUp(); // ポップアップを閉じる
@@ -46,7 +46,6 @@ const PopUp = ({ togglePopUp, setPostData }) => {
       <div className="popup_content">
         <div className="flex">
           <div className="selectImg">
-            {/* tempImageに画像のURLが保持されている場合、右辺の処理をする */}
             {tempImage && <img src={tempImage} alt="選択した画像" />}
             <input
               type="file"
@@ -57,7 +56,6 @@ const PopUp = ({ togglePopUp, setPostData }) => {
           </div>
           <ul>
             <li>
-              {/* カレンダー日付選択 */}
               <h3>日付</h3>
               <input
                 className="calender"
@@ -82,14 +80,8 @@ const PopUp = ({ togglePopUp, setPostData }) => {
             <li>
               <div>
                 <h3>タグ</h3>
-                {/* <label className="selectbox-3">
-                  <select value={tag} onChange={(e) => setTag(e.target.value)}>
-                    <option>optionの例1</option>
-                    <option>optionの例2</option>
-                    <option>optionの例3</option>
-                  </select>
-                </label> */}
-                <TagInputComponent />
+                {/* Taginput コンポーネントに setTags を渡す */}
+                <Taginput setTags={setTags} />
               </div>
             </li>
           </ul>
